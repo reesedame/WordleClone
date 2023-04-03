@@ -20,6 +20,9 @@ hr {
 
 .guesses-container > div {
     outline: 1px solid lightgray;
+    text-align: center;
+    padding-top: 1.5vmin;
+    font-size: 2vmin;
 }
 
 .keyboard {
