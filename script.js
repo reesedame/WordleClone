@@ -50,3 +50,14 @@ function handleKeyboardClick(e) {
 		).innerText = key;
 	}
 }
+
+function handleDelete() {
+	if (currentGuess === "") {
+		return;
+	}
+	currentGuessIdx = currentGuess.length - 1;
+	document.getElementById(
+		`guess-${numGuesses}-idx-${currentGuessIdx}`
+	).innerText = "";
+	currentGuess = currentGuess.slice(0, -1);
+}
