@@ -40,3 +40,13 @@ hr {
     text-align: center;
     padding-top: 1.5vmin;
 }
+
+button {
+    margin-top: 5vmin;
+    text-align: center;
+    background-color: rgb(95, 160, 89);
+    color: white;
+    border-radius: 45%;
+    font-size: 1.5vmin;
+    padding: 1.5vmin;
+}
