@@ -8,6 +8,7 @@ const winningMsg = "Congrats! You identified the wordle!";
 let numGuesses;
 let guesses;
 let wordle;
+let losingMsg;
 
 /*----- cached elements  -----*/
 
@@ -29,6 +30,7 @@ function initialize() {
 	numGuesses = 0;
 	guesses = [];
 	wordle = getRandomWord(words);
+	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
 	currentGuessIdx = currentGuess.length - 1;
 	playAgainBtn.style.visibility = "hidden";
@@ -71,9 +73,7 @@ function handleEnter() {
 	}
 
 	if (currentGuess === wordle) {
-		renderWinningGuessOnBoard();
-		gameMsg.innerText = winningMsg;
-		playAgainBtn.style.visibility = "visible";
+		renderWin();
 	} else {
 		for (let i = 0; i < wordle.length; i++) {
 			let currentBoardLetter = document.getElementById(
@@ -90,7 +90,25 @@ function handleEnter() {
 				currentBoardLetter.style.color = "white";
 			}
 		}
+
 		numGuesses++;
 		currentGuess = "";
+
+		if (numGuesses === 6) {
+			renderLoss();
+		}
+	}
+}
+
+function renderWin() {
+	gameMsg.innerText = winningMsg;
+	playAgainBtn.style.visibility = "visible";
+
+	for (let i = 0; i < wordle.length; i++) {
+		let currentBoardLetter = document.getElementById(
+			`guess-${numGuesses}-idx-${i}`
+		);
+		currentBoardLetter.style.backgroundColor = "rgb(95, 160, 89)";
+		currentBoardLetter.style.color = "white";
 	}
 }
