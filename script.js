@@ -2,6 +2,9 @@
 
 const words = ["CHUNK", "CLOCK", "ADOPT", "DOZEN", "LAYER", "LEMON", "MEDAL"];
 const winningMsg = "Congrats! You identified the wordle!";
+const green = "rgb(95, 160, 89)";
+const yellow = "rgb(194, 171, 78)";
+const gray = "rgb(109, 113, 115)";
 
 /*----- state variables -----*/
 
@@ -77,22 +80,7 @@ function handleEnter() {
 	if (currentGuess === wordle) {
 		renderWin();
 	} else {
-		for (let i = 0; i < wordle.length; i++) {
-			let currentBoardLetter = document.getElementById(
-				`guess-${numGuesses}-idx-${i}`
-			);
-			if (wordle[i] === currentGuess[i]) {
-				currentBoardLetter.style.backgroundColor = "rgb(95, 160, 89)";
-				currentBoardLetter.style.color = "white";
-			} else if (wordle.indexOf(currentGuess[i]) > -1) {
-				currentBoardLetter.style.backgroundColor = "rgb(194, 171, 78)";
-				currentBoardLetter.style.color = "white";
-			} else {
-				currentBoardLetter.style.backgroundColor = "rgb(109, 113, 115)";
-				currentBoardLetter.style.color = "white";
-			}
-		}
-
+		compareGuessToWordle();
 		numGuesses++;
 		currentGuess = "";
 
@@ -131,4 +119,42 @@ function clearBoard() {
 			currentBoardLetter.style.color = "black";
 		}
 	}
+}
+
+function compareGuessToWordle() {
+	let wordleLetterCount = getLetterCount(wordle);
+
+	for (let i = 0; i < wordle.length; i++) {
+		let currentBoardLetter = document.getElementById(
+			`guess-${numGuesses}-idx-${i}`
+		);
+		if (wordle[i] === currentGuess[i]) {
+			wordleLetterCount[wordle[i]]--;
+			currentBoardLetter.style.backgroundColor = green;
+			currentBoardLetter.style.color = "white";
+		} else if (wordle.indexOf(currentGuess[i]) > -1) {
+			if (wordleLetterCount[currentGuess[i]] > 0) {
+				currentBoardLetter.style.backgroundColor = yellow;
+			} else {
+				currentBoardLetter.style.backgroundColor = gray;
+			}
+			wordleLetterCount[wordle[i]]--;
+			currentBoardLetter.style.color = "white";
+		} else {
+			currentBoardLetter.style.backgroundColor = gray;
+			currentBoardLetter.style.color = "white";
+		}
+	}
+}
+
+function getLetterCount(word) {
+	const letterCount = {};
+	for (let i = 0; i < word.length; i++) {
+		if (word[i] in letterCount) {
+			letterCount[word[i]]++;
+		} else {
+			letterCount[word[i]] = 1;
+		}
+	}
+	return letterCount;
 }
