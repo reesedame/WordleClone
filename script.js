@@ -124,25 +124,21 @@ function compareGuessToWordle() {
 		let currentBoardLetter = document.getElementById(
 			`guess-${numGuesses}-idx-${i}`
 		);
-		if (wordle[i] === currentGuess[i]) {
-			wordleLetterCount[wordle[i]]--;
-			currentBoardLetter.style.backgroundColor = green;
-			currentBoardLetter.style.outlineColor = green;
-			currentBoardLetter.style.color = "white";
-		} else if (wordle.indexOf(currentGuess[i]) > -1) {
-			if (wordleLetterCount[currentGuess[i]] > 0) {
-				currentBoardLetter.style.backgroundColor = yellow;
-				currentBoardLetter.style.outlineColor = yellow;
+		let wordleChar = wordle[i];
+		let guessChar = currentGuess[i];
+
+		if (wordleChar === guessChar) {
+			wordleLetterCount[wordleChar]--;
+			updateBoardLetterColor(currentBoardLetter, green);
+		} else if (wordle.indexOf(guessChar) > -1) {
+			if (wordleLetterCount[guessChar] > 0) {
+				updateBoardLetterColor(currentBoardLetter, yellow);
 			} else {
-				currentBoardLetter.style.backgroundColor = gray;
-				currentBoardLetter.style.outlineColor = gray;
+				updateBoardLetterColor(currentBoardLetter, gray);
 			}
-			wordleLetterCount[wordle[i]]--;
-			currentBoardLetter.style.color = "white";
+			wordleLetterCount[wordleChar]--;
 		} else {
-			currentBoardLetter.style.backgroundColor = gray;
-			currentBoardLetter.style.outlineColor = gray;
-			currentBoardLetter.style.color = "white";
+			updateBoardLetterColor(currentBoardLetter, gray);
 		}
 	}
 }
@@ -164,4 +160,10 @@ async function getRandomWordViaAPI() {
 	const result = await response.json();
 	const word = result[0].toString();
 	return word.toUpperCase();
+}
+
+function updateBoardLetterColor(boardLetter, color) {
+	boardLetter.style.backgroundColor = color;
+	boardLetter.style.outlineColor = color;
+	boardLetter.style.color = "white";
 }
