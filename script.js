@@ -32,7 +32,8 @@ initialize();
 async function initialize() {
 	numGuesses = 0;
 	guesses = [];
-	wordle = await getRandomWordViaAPI();
+	// wordle = await getRandomWordViaAPI();
+	wordle = "BROOS";
 	gameMsg.innerText = "";
 	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
@@ -141,6 +142,7 @@ function clearKeyboardColors() {
 
 function compareGuessToWordle() {
 	let wordleLetterCount = getLetterCount(wordle);
+	let guessLetterCount = getLetterCount(currentGuess);
 
 	for (let i = 0; i < wordle.length; i++) {
 		let currentBoardLetter = document.getElementById(
@@ -152,9 +154,13 @@ function compareGuessToWordle() {
 
 		if (wordleChar === guessChar) {
 			wordleLetterCount[wordleChar]--;
+			guessLetterCount[guessChar]--;
 			updateElementColor(currentBoardLetter, green);
 			updateElementColor(currentKeyboard, green);
-		} else if (wordle.indexOf(guessChar) > -1) {
+		} else if (
+			wordle.indexOf(guessChar) > -1 &&
+			wordleLetterCount[guessChar] >= guessLetterCount[guessChar]
+		) {
 			if (wordleLetterCount[guessChar] > 0) {
 				updateElementColor(currentBoardLetter, yellow);
 				if (currentKeyboard.style.backgroundColor !== green) {
@@ -167,6 +173,7 @@ function compareGuessToWordle() {
 				}
 			}
 			wordleLetterCount[wordleChar]--;
+			guessLetterCount[guessChar]--;
 		} else {
 			updateElementColor(currentBoardLetter, gray);
 			if (currentKeyboard.style.backgroundColor !== green) {
