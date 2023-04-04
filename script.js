@@ -32,8 +32,7 @@ initialize();
 async function initialize() {
 	numGuesses = 0;
 	guesses = [];
-	// wordle = await getRandomWordViaAPI();
-	wordle = "BROOS";
+	wordle = await getRandomWordViaAPI();
 	gameMsg.innerText = "";
 	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
