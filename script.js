@@ -30,10 +30,12 @@ function initialize() {
 	numGuesses = 0;
 	guesses = [];
 	wordle = getRandomWord(words);
+	gameMsg.innerText = "";
 	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
 	currentGuessIdx = currentGuess.length - 1;
 	playAgainBtn.style.visibility = "hidden";
+	clearBoard();
 }
 
 function getRandomWord(words) {
@@ -110,5 +112,23 @@ function renderWin() {
 		);
 		currentBoardLetter.style.backgroundColor = "rgb(95, 160, 89)";
 		currentBoardLetter.style.color = "white";
+	}
+}
+
+function renderLoss() {
+	gameMsg.innerText = losingMsg;
+	playAgainBtn.style.visibility = "visible";
+}
+
+function clearBoard() {
+	for (let row = 0; row < 6; row++) {
+		for (let idx = 0; idx < 5; idx++) {
+			let currentBoardLetter = document.getElementById(
+				`guess-${row}-idx-${idx}`
+			);
+			currentBoardLetter.innerText = "";
+			currentBoardLetter.style.backgroundColor = "white";
+			currentBoardLetter.style.color = "black";
+		}
 	}
 }
