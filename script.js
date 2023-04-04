@@ -39,6 +39,7 @@ async function initialize() {
 	currentGuessIdx = currentGuess.length - 1;
 	playAgainBtn.style.visibility = "hidden";
 	clearBoard();
+	clearKeyboardColors();
 }
 
 function handleKeyboardClick(e) {
@@ -93,8 +94,9 @@ function renderWin() {
 		let currentBoardLetter = document.getElementById(
 			`guess-${numGuesses}-idx-${i}`
 		);
-		currentBoardLetter.style.backgroundColor = green;
-		currentBoardLetter.style.color = "white";
+		let currentKeyboard = document.getElementById(`${wordle[i]}`);
+		updateElementColor(currentBoardLetter, green);
+		updateElementColor(currentKeyboard, green);
 	}
 }
 
@@ -117,6 +119,26 @@ function clearBoard() {
 	}
 }
 
+function clearKeyboardColors() {
+	let row1 = document.querySelectorAll(".keyboard-row-1 > div");
+	row1.forEach((element) => {
+		element.style.backgroundColor = "lightgray";
+		element.style.color = "black";
+	});
+
+	let row2 = document.querySelectorAll(".keyboard-row-2 > div");
+	row2.forEach((element) => {
+		element.style.backgroundColor = "lightgray";
+		element.style.color = "black";
+	});
+
+	let row3 = document.querySelectorAll(".keyboard-row-3 > div");
+	row3.forEach((element) => {
+		element.style.backgroundColor = "lightgray";
+		element.style.color = "black";
+	});
+}
+
 function compareGuessToWordle() {
 	let wordleLetterCount = getLetterCount(wordle);
 
@@ -126,19 +148,30 @@ function compareGuessToWordle() {
 		);
 		let wordleChar = wordle[i];
 		let guessChar = currentGuess[i];
+		let currentKeyboard = document.getElementById(`${guessChar}`);
 
 		if (wordleChar === guessChar) {
 			wordleLetterCount[wordleChar]--;
-			updateBoardLetterColor(currentBoardLetter, green);
+			updateElementColor(currentBoardLetter, green);
+			updateElementColor(currentKeyboard, green);
 		} else if (wordle.indexOf(guessChar) > -1) {
 			if (wordleLetterCount[guessChar] > 0) {
-				updateBoardLetterColor(currentBoardLetter, yellow);
+				updateElementColor(currentBoardLetter, yellow);
+				if (currentKeyboard.style.backgroundColor !== green) {
+					updateElementColor(currentKeyboard, yellow);
+				}
 			} else {
-				updateBoardLetterColor(currentBoardLetter, gray);
+				updateElementColor(currentBoardLetter, gray);
+				if (currentKeyboard.style.backgroundColor !== green) {
+					updateElementColor(currentKeyboard, gray);
+				}
 			}
 			wordleLetterCount[wordleChar]--;
 		} else {
-			updateBoardLetterColor(currentBoardLetter, gray);
+			updateElementColor(currentBoardLetter, gray);
+			if (currentKeyboard.style.backgroundColor !== green) {
+				updateElementColor(currentKeyboard, gray);
+			}
 		}
 	}
 }
@@ -162,8 +195,8 @@ async function getRandomWordViaAPI() {
 	return word.toUpperCase();
 }
 
-function updateBoardLetterColor(boardLetter, color) {
-	boardLetter.style.backgroundColor = color;
-	boardLetter.style.outlineColor = color;
-	boardLetter.style.color = "white";
+function updateElementColor(element, color) {
+	element.style.backgroundColor = color;
+	element.style.outlineColor = color;
+	element.style.color = "white";
 }
