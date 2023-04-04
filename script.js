@@ -32,7 +32,8 @@ initialize();
 async function initialize() {
 	numGuesses = 0;
 	guesses = [];
-	wordle = await getRandomWordViaAPI();
+	// wordle = await getRandomWordViaAPI();
+	wordle = "GAPES";
 	gameMsg.innerText = "";
 	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
@@ -171,13 +172,14 @@ function compareGuessToWordle() {
 					updateElementColor(currentKeyboard, gray);
 				}
 			}
-			wordleLetterCount[wordleChar]--;
+			wordleLetterCount[guessChar]--;
 			guessLetterCount[guessChar]--;
 		} else {
 			updateElementColor(currentBoardLetter, gray);
 			if (currentKeyboard.style.backgroundColor !== green) {
 				updateElementColor(currentKeyboard, gray);
 			}
+			guessLetterCount[guessChar]--;
 		}
 	}
 }
