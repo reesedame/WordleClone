@@ -20,7 +20,7 @@ hr {
 }
 
 .guesses-container > div {
-    outline: 2px solid lightgray;
+    outline: 0.025vmin solid lightgray;
     text-align: center;
     padding-top: 1.5vmin;
     font-size: 2vmin;
@@ -38,6 +38,7 @@ hr {
 .keyboard-row-1 > div {
     background-color: lightgray;
     border-radius: 10%;
+    font-size: 1.75vmin;
     text-align: center;
     font-weight: bold;
 }
@@ -54,6 +55,7 @@ hr {
 .keyboard-row-2 > div {
     background-color: lightgray;
     border-radius: 10%;
+    font-size: 1.75vmin;
     text-align: center;
     font-weight: bold;
 }
@@ -70,6 +72,7 @@ hr {
 .keyboard-row-3 > div {
     background-color: lightgray;
     border-radius: 10%;
+    font-size: 1.75vmin;
     text-align: center;
     font-weight: bold;
 }
@@ -77,6 +80,7 @@ hr {
 #enterBtn {
     grid-column-start: 1;
     grid-column-end: span 2;
+    font-size: 1.5vmin;
 }
 
 #deleteBtn {
