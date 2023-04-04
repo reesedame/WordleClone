@@ -98,7 +98,7 @@ function renderWin() {
 		let currentBoardLetter = document.getElementById(
 			`guess-${numGuesses}-idx-${i}`
 		);
-		currentBoardLetter.style.backgroundColor = "rgb(95, 160, 89)";
+		currentBoardLetter.style.backgroundColor = green;
 		currentBoardLetter.style.color = "white";
 	}
 }
@@ -116,6 +116,7 @@ function clearBoard() {
 			);
 			currentBoardLetter.innerText = "";
 			currentBoardLetter.style.backgroundColor = "white";
+			currentBoardLetter.style.outlineColor = "lightgray";
 			currentBoardLetter.style.color = "black";
 		}
 	}
@@ -131,17 +132,21 @@ function compareGuessToWordle() {
 		if (wordle[i] === currentGuess[i]) {
 			wordleLetterCount[wordle[i]]--;
 			currentBoardLetter.style.backgroundColor = green;
+			currentBoardLetter.style.outlineColor = green;
 			currentBoardLetter.style.color = "white";
 		} else if (wordle.indexOf(currentGuess[i]) > -1) {
 			if (wordleLetterCount[currentGuess[i]] > 0) {
 				currentBoardLetter.style.backgroundColor = yellow;
+				currentBoardLetter.style.outlineColor = yellow;
 			} else {
 				currentBoardLetter.style.backgroundColor = gray;
+				currentBoardLetter.style.outlineColor = gray;
 			}
 			wordleLetterCount[wordle[i]]--;
 			currentBoardLetter.style.color = "white";
 		} else {
 			currentBoardLetter.style.backgroundColor = gray;
+			currentBoardLetter.style.outlineColor = gray;
 			currentBoardLetter.style.color = "white";
 		}
 	}
