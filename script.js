@@ -277,8 +277,10 @@ function changeColorTheme(colorTheme) {
 	if (colorTheme) {
 		body.style.backgroundColor = "white";
 		gameTitle.style.color = "black";
+		gameMsg.style.color = "black";
 	} else {
 		body.style.backgroundColor = "rgb(35, 36, 32)";
 		gameTitle.style.color = "white";
+		gameMsg.style.color = "white";
 	}
 }

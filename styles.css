@@ -106,6 +106,7 @@ hr {
 #theme-btn {
     margin-right: 8vmin;
     margin-left: auto;
+    margin-top: 0.5vmin;
     font-size: 2vmin;
     border: none;
     border-radius: 25%;
