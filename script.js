@@ -63,18 +63,23 @@ let numGuesses;
 let guesses;
 let wordle;
 let losingMsg;
+let colorTheme;
 
 /*----- cached elements  -----*/
 
 const gameMsg = document.getElementById("game-msg");
-const playAgainBtn = document.querySelector("button");
+const playAgainBtn = document.getElementById("play-btn");
+const toggleColorThemeBtn = document.getElementById("theme-btn");
 
 /*----- event listeners -----*/
 
 document
 	.getElementById("keyboard")
 	.addEventListener("click", handleKeyboardClick);
+
 playAgainBtn.addEventListener("click", initialize);
+
+toggleColorThemeBtn.addEventListener("click", toggleColorTheme);
 
 /*----- functions -----*/
 
@@ -91,6 +96,7 @@ function initialize() {
 	playAgainBtn.style.visibility = "hidden";
 	clearBoard();
 	clearKeyboardColors();
+	colorTheme = true;
 }
 
 function handleKeyboardClick(e) {
@@ -257,4 +263,22 @@ function updateElementColor(element, color) {
 	element.style.backgroundColor = color;
 	element.style.outlineColor = color;
 	element.style.color = "white";
+}
+
+function toggleColorTheme() {
+	colorTheme = !colorTheme;
+	changeColorTheme(colorTheme);
+}
+
+function changeColorTheme(colorTheme) {
+	let body = document.querySelector("body");
+	let gameTitle = document.querySelector("h1");
+
+	if (colorTheme) {
+		body.style.backgroundColor = "white";
+		gameTitle.style.color = "black";
+	} else {
+		body.style.backgroundColor = "rgb(35, 36, 32)";
+		gameTitle.style.color = "white";
+	}
 }

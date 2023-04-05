@@ -6,12 +6,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1, h2 {
+    font-size: 2.5vmin;
+}
+
 hr {
     width: 100%;
 }
 
 .guesses-container {
-    margin-top: 3vmin;
+    margin-top: 2vmin;
     display: grid;
     grid-template-columns: repeat(5, 5vmin);
     grid-template-rows: repeat(6, 5vmin);
@@ -28,7 +32,7 @@ hr {
 }
 
 .keyboard-row-1 {
-    margin-top: 8vmin;
+    margin-top: 6vmin;
     line-height: 4vmin;
     display: grid;
     grid-template-columns: repeat(10, 3.5vmin);
@@ -77,19 +81,19 @@ hr {
     font-weight: bold;
 }
 
-#enterBtn {
+#enter-btn {
     grid-column-start: 1;
     grid-column-end: span 2;
     font-size: 1.5vmin;
 }
 
-#deleteBtn {
+#delete-btn {
     grid-column-start: 10;
     grid-column-end: span 2;
     font-size: 2vmin;
 }
 
-button {
+#play-btn {
     margin-top: 5vmin;
     text-align: center;
     background-color: rgb(95, 160, 89);
@@ -97,4 +101,12 @@ button {
     border-radius: 45%;
     font-size: 1.5vmin;
     padding: 1.5vmin;
+}
+
+#theme-btn {
+    margin-right: 8vmin;
+    margin-left: auto;
+    font-size: 2vmin;
+    border: none;
+    border-radius: 25%;
 }
