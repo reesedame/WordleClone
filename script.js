@@ -48,12 +48,14 @@ function handleKeyboardClick(e) {
 		handleEnter();
 	} else if (key === "") {
 		handleDelete();
-	} else {
+	} else if (currentGuess.length < 5) {
 		currentGuess += key;
 		currentGuessIdx = currentGuess.length - 1;
 		document.getElementById(
 			`guess-${numGuesses}-idx-${currentGuessIdx}`
 		).innerText = key;
+	} else {
+		return;
 	}
 }
 
