@@ -4,7 +4,58 @@ const winningMsg = "Congrats! You identified the wordle!";
 const green = "rgb(95, 160, 89)";
 const yellow = "rgb(194, 171, 78)";
 const gray = "rgb(109, 113, 115)";
-const url = "https://random-word-api.herokuapp.com/word?length=5";
+const words = [
+	"WHICH",
+	"THEIR",
+	"THERE",
+	"WOULD",
+	"ABOUT",
+	"FIRST",
+	"AFTER",
+	"KAYAK",
+	"WHERE",
+	"BEING",
+	"YEARS",
+	"AMONG",
+	"UNTIL",
+	"WOMEN",
+	"EARLY",
+	"HEART",
+	"BLACK",
+	"WHITE",
+	"APPLE",
+	"LOCAL",
+	"VALUE",
+	"STUDY",
+	"HOUSE",
+	"LARGE",
+	"THINK",
+	"CYCLE",
+	"DELAY",
+	"ELITE",
+	"FAULT",
+	"GHOST",
+	"IDEAL",
+	"JUICE",
+	"ONION",
+	"PIANO",
+	"QUICK",
+	"RATIO",
+	"STAGE",
+	"URBAN",
+	"TOOTH",
+	"VITAL",
+	"WORLD",
+	"ROUTE",
+	"MOUSE",
+	"HUMOR",
+	"OUGHT",
+	"FRUIT",
+	"POWER",
+	"YIELD",
+	"SHOUT",
+	"IMPLY",
+];
 
 /*----- state variables -----*/
 
@@ -29,10 +80,10 @@ playAgainBtn.addEventListener("click", initialize);
 
 initialize();
 
-async function initialize() {
+function initialize() {
 	numGuesses = 0;
 	guesses = [];
-	wordle = await getRandomWordViaAPI();
+	wordle = getRandomWord(words);
 	gameMsg.innerText = "";
 	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
@@ -197,11 +248,9 @@ function getLetterCount(word) {
 	return letterCount;
 }
 
-async function getRandomWordViaAPI() {
-	const response = await fetch(url);
-	const result = await response.json();
-	const word = result[0].toString();
-	return word.toUpperCase();
+function getRandomWord(words) {
+	let randomIdx = Math.floor(Math.random() * words.length);
+	return words[randomIdx];
 }
 
 function updateElementColor(element, color) {
