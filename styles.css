@@ -11,7 +11,7 @@ hr {
 }
 
 .guesses-container {
-    margin-top: 5vmin;
+    margin-top: 3vmin;
     display: grid;
     grid-template-columns: repeat(5, 5vmin);
     grid-template-rows: repeat(6, 5vmin);
@@ -22,49 +22,49 @@ hr {
 .guesses-container > div {
     outline: 0.025vmin solid lightgray;
     text-align: center;
-    padding-top: 1.5vmin;
-    font-size: 2vmin;
+    padding-top: 1.25vmin;
+    font-size: 2.5vmin;
     font-weight: bold;
 }
 
 .keyboard-row-1 {
-    margin-top: 10vmin;
-    line-height: 3.5vmin;
+    margin-top: 8vmin;
+    line-height: 4vmin;
     display: grid;
-    grid-template-columns: repeat(10, 3vmin);
+    grid-template-columns: repeat(10, 3.5vmin);
     column-gap: 0.5vmin;
 }
 
 .keyboard-row-1 > div {
     background-color: lightgray;
     border-radius: 10%;
-    font-size: 1.75vmin;
+    font-size: 2vmin;
     text-align: center;
     font-weight: bold;
 }
 
 .keyboard-row-2 {
     margin-top: 0.5vmin;
-    line-height: 3.5vmin;
+    line-height: 4vmin;
     justify-content: center;
     display: grid;
-    grid-template-columns: repeat(9, 3vmin);
+    grid-template-columns: repeat(9, 3.5vmin);
     column-gap: 0.5vmin;
 }
 
 .keyboard-row-2 > div {
     background-color: lightgray;
     border-radius: 10%;
-    font-size: 1.75vmin;
+    font-size: 2vmin;
     text-align: center;
     font-weight: bold;
 }
 
 .keyboard-row-3 {
     margin-top: 0.5vmin;
-    line-height: 3.5vmin;
+    line-height: 4vmin;
     display: grid;
-    grid-template-columns: repeat(10, 3vmin);
+    grid-template-columns: repeat(10, 3.5vmin);
     column-gap: 0.5vmin;
     row-gap: 0.5vmin;
 }
@@ -72,7 +72,7 @@ hr {
 .keyboard-row-3 > div {
     background-color: lightgray;
     border-radius: 10%;
-    font-size: 1.75vmin;
+    font-size: 2vmin;
     text-align: center;
     font-weight: bold;
 }
@@ -86,6 +86,7 @@ hr {
 #deleteBtn {
     grid-column-start: 10;
     grid-column-end: span 2;
+    font-size: 2vmin;
 }
 
 button {
