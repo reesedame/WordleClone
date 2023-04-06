@@ -60,7 +60,6 @@ const words = [
 /*----- state variables -----*/
 
 let numGuesses;
-let guesses;
 let wordle;
 let losingMsg;
 let colorTheme;
@@ -87,16 +86,15 @@ initialize();
 
 function initialize() {
 	numGuesses = 0;
-	guesses = [];
 	wordle = getRandomWord(words);
 	gameMsg.innerText = "";
 	losingMsg = `You've run out of guesses. The wordle was ${wordle}.`;
 	currentGuess = "";
-	currentGuessIdx = currentGuess.length - 1;
+	currentGuessIdx = 0;
 	playAgainBtn.style.visibility = "hidden";
-	clearBoard();
-	clearKeyboardColors();
 	colorTheme = true;
+	clearGuessesBoard();
+	clearKeyboardColors();
 }
 
 function handleKeyboardClick(e) {
@@ -128,6 +126,7 @@ function handleDelete() {
 }
 
 function handleEnter() {
+	// do not allow player to enter a guess less than 5 characters
 	if (currentGuess.length !== 5) {
 		return;
 	}
@@ -139,12 +138,14 @@ function handleEnter() {
 		numGuesses++;
 		currentGuess = "";
 
+		// player is only allowed 5 guesses
 		if (numGuesses === 6) {
 			renderLoss();
 		}
 	}
 }
 
+// displays winningMsg, playAgainBtn, & makes the winning guess and keyboard letters green
 function renderWin() {
 	gameMsg.innerText = winningMsg;
 	playAgainBtn.style.visibility = "visible";
@@ -159,12 +160,14 @@ function renderWin() {
 	}
 }
 
+// displays losingMsg & playAgainBtn
 function renderLoss() {
 	gameMsg.innerText = losingMsg;
 	playAgainBtn.style.visibility = "visible";
 }
 
-function clearBoard() {
+// renders an empty board for guesses
+function clearGuessesBoard() {
 	for (let row = 0; row < 6; row++) {
 		for (let idx = 0; idx < 5; idx++) {
 			let currentBoardLetter = document.getElementById(
@@ -178,6 +181,7 @@ function clearBoard() {
 	}
 }
 
+// renders all keyboard chars with a lightgray background
 function clearKeyboardColors() {
 	let row1 = document.querySelectorAll(".keyboard-row-1 > div");
 	row1.forEach((element) => {
@@ -210,13 +214,14 @@ function compareGuessToWordle() {
 		let guessChar = currentGuess[i];
 		let currentKeyboard = document.getElementById(`${guessChar}`);
 
+		// renders currentBoardLetter as green if it's in the correct position
 		if (wordleChar === guessChar) {
 			wordleLetterCount[wordleChar]--;
 			guessLetterCount[guessChar]--;
 			updateElementColor(currentBoardLetter, green);
 			updateElementColor(currentKeyboard, green);
 		} else if (
-			wordle.indexOf(guessChar) > -1 &&
+			// determines if currentBoardLetter is in the wordle; letter counts are used to handle duplicates
 			wordleLetterCount[guessChar] >= guessLetterCount[guessChar]
 		) {
 			if (wordleLetterCount[guessChar] > 0) {
@@ -233,6 +238,7 @@ function compareGuessToWordle() {
 			wordleLetterCount[guessChar]--;
 			guessLetterCount[guessChar]--;
 		} else {
+			// currentBoardLetter is not in the wordle & rendered as gray
 			updateElementColor(currentBoardLetter, gray);
 			if (currentKeyboard.style.backgroundColor !== green) {
 				updateElementColor(currentKeyboard, gray);
@@ -259,6 +265,7 @@ function getRandomWord(words) {
 	return words[randomIdx];
 }
 
+// changes an element's background to provided color & text color changes to white
 function updateElementColor(element, color) {
 	element.style.backgroundColor = color;
 	element.style.outlineColor = color;
@@ -270,6 +277,8 @@ function toggleColorTheme() {
 	changeColorTheme(colorTheme);
 }
 
+// if colorTheme is true, background is white & text is black
+// else, background is dark gray & text is white
 function changeColorTheme(colorTheme) {
 	let body = document.querySelector("body");
 	let gameTitle = document.querySelector("h1");
