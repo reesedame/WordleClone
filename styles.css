@@ -10,6 +10,10 @@ h1, h2 {
     font-size: 2.5vmin;
 }
 
+h1 {
+    font-family:'Times New Roman', Times, serif;
+}
+
 hr {
     width: 100%;
 }
@@ -98,9 +102,16 @@ hr {
     text-align: center;
     background-color: rgb(95, 160, 89);
     color: white;
-    border-radius: 45%;
-    font-size: 1.5vmin;
-    padding: 1.5vmin;
+    border-radius: 15px;
+    font-size: 2vmin;
+    padding: 1vmin;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+#play-btn:hover {
+    opacity: 1;
 }
 
 #theme-btn {
@@ -110,4 +121,11 @@ hr {
     font-size: 2vmin;
     border: none;
     border-radius: 25%;
+    transition: 0.3s;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#theme-btn:hover {
+    opacity: 1;
 }
