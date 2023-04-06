@@ -33,6 +33,7 @@ hr {
     padding-top: 1.25vmin;
     font-size: 2.5vmin;
     font-weight: bold;
+    transition: background-color 0.25s linear;
 }
 
 .keyboard-row-1 {
@@ -49,6 +50,8 @@ hr {
     font-size: 2vmin;
     text-align: center;
     font-weight: bold;
+    transition: background-color 0.25s linear;
+    cursor: pointer;
 }
 
 .keyboard-row-2 {
@@ -66,6 +69,8 @@ hr {
     font-size: 2vmin;
     text-align: center;
     font-weight: bold;
+    transition: background-color 0.25s linear;
+    cursor: pointer;
 }
 
 .keyboard-row-3 {
@@ -83,6 +88,8 @@ hr {
     font-size: 2vmin;
     text-align: center;
     font-weight: bold;
+    transition: background-color 0.25s linear;
+    cursor: pointer;
 }
 
 #enter-btn {
