@@ -1,8 +1,8 @@
 # WordleClone
 
-![The game looks great in action!](/assets/screenshotLightTheme.png "Light Theme Game Play")
+_Screenshot of gameplay below._
 
-_Screenshot of gameplay._
+![The game looks great in action!](/assets/screenshotLightTheme.png "Light Theme Game Play")
 
 - **WordleClone:** Can't get enough of Wordle? Neither can I, so I created a clone that allows you to play as much as you want! For the uninitiated, Wordle is a puzzle game where you get six chances to guess a five-letter word.
 - **Technologies Used:** JavaScript, HTML, CSS

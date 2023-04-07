@@ -98,6 +98,16 @@ function initialize() {
 }
 
 function handleKeyboardClick(e) {
+	// ignore click if it is not directly on a key
+	if (
+		e.target === document.getElementById("keyboard") ||
+		e.target === document.getElementById("keyboard-row-1") ||
+		e.target === document.getElementById("keyboard-row-2") ||
+		e.target === document.getElementById("keyboard-row-3")
+	) {
+		return;
+	}
+
 	const key = e.target.innerText;
 	if (key === "ENTER") {
 		handleEnter();

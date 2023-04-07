@@ -44,16 +44,6 @@ hr {
     column-gap: 0.5vmin;
 }
 
-.keyboard-row-1 > div {
-    background-color: lightgray;
-    border-radius: 10%;
-    font-size: 2vmin;
-    text-align: center;
-    font-weight: bold;
-    transition: background-color 0.25s linear;
-    cursor: pointer;
-}
-
 .keyboard-row-2 {
     margin-top: 0.5vmin;
     line-height: 4vmin;
@@ -61,16 +51,6 @@ hr {
     display: grid;
     grid-template-columns: repeat(9, 3.5vmin);
     column-gap: 0.5vmin;
-}
-
-.keyboard-row-2 > div {
-    background-color: lightgray;
-    border-radius: 10%;
-    font-size: 2vmin;
-    text-align: center;
-    font-weight: bold;
-    transition: background-color 0.25s linear;
-    cursor: pointer;
 }
 
 .keyboard-row-3 {
@@ -82,7 +62,7 @@ hr {
     row-gap: 0.5vmin;
 }
 
-.keyboard-row-3 > div {
+.keyboard-row-1 > div, .keyboard-row-2 > div, .keyboard-row-3 > div {
     background-color: lightgray;
     border-radius: 10%;
     font-size: 2vmin;
